@@ -1,0 +1,104 @@
+<! doctype html>
+<html>
+
+<head>
+
+<link rel="stylesheet" type="text/css" href="../../Core/bootstrap.min.css">
+<script type="text/javascript" src="../../Core/jquery-1.12.3.min.js"></script>
+<script type="text/javascript" src="../../Core/bootstrap.min.js"></script>
+
+
+<script type="text/javascript" src="main.js"></script>
+<link rel="stylesheet" type="text/css" href="main.css">
+
+<style type="text/css">
+.row{
+	margin: 0;
+}
+</style>
+
+</head>
+
+<body onKeypress="onCalcKeyPress(event);">
+
+
+<div id="container">
+
+<div id="divCalc" > 
+
+<div class="topPanel"></div>
+<div class="buttons">
+
+
+<div class="row top-panel">
+	<input type="button" value="C" class="keys" data-type="clear"  >
+	<input type="text" data-type="screen" readonly>
+</div>
+
+<div class="row">
+	<input type="button" class="keys" value="7" data-value="7" data-type="number">
+	<input type="button" class="keys" value="8" data-value="8" data-type="number">
+	<input type="button" class="keys" value="9" data-value="9" data-type="number">
+	<input type="button" class="keys" value="+" data-value="+" data-type="operator">
+</div>
+
+<div class="row">
+	<input type="button" class="keys" value="4" data-value="4" data-type="number">
+	<input type="button" class="keys" value="5" data-value="5" data-type="number">
+	<input type="button" class="keys" value="6" data-value="6" data-type="number">
+	<input type="button" class="keys" value="-" data-value="-" data-type="operator">
+</div>
+
+<div class="row">
+	<input type="button" class="keys" value="1" data-value="1" data-type="number">
+	<input type="button" class="keys" value="2" data-value="2" data-type="number">
+	<input type="button" class="keys" value="3" data-value="3" data-type="number">
+	<input type="button" class="keys" value="&divide" data-value="&divide" data-type="operator">
+</div>
+
+
+<div class="row">
+	<input type="button" class="keys" value="0" data-value="0" data-type="number">
+	<input type="button" class="keys" value="." data-value="." data-type="number">
+	<input type="button" class="keys" value="=" data-value="=" data-type="eval">
+	<input type="button" class="keys" value="x" data-value="x" data-type="operator">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<script type="text/javascript">
+
+function onCalcKeyPress(event){
+    	
+    var key= event.keyCode || event.charCode;// || window.event.keyCode;
+	var no=String.fromCharCode(key);
+    var operatorArr=[42,43,45,46,47]; //*,+,-,.,/
+
+    //if pressed enter
+    if(key==13)
+    	$("[data-type='eval']").trigger("click");
+
+    else if(key>=48 && key<=57)
+    	$("input[data-value='"+no+"']").trigger("click");
+   
+    //clicked operator
+    else if(operatorArr.indexOf(key)>=0)
+    {
+        var operator=String.fromCharCode(key);
+        $("input[data-value='"+operator+"']").trigger("click");
+    }
+    
+    else if(key===13)
+    	$("input[data-type='eval']").trigger("click");
+}
+
+</script>
+</body>
+
+</html>
